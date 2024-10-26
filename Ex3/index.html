@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm cặp số</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="inputArea">
+        <script>
+            const numbers = [];
+
+            function addNumbers() {
+                let count = parseInt(prompt("Nhập số lượng phần tử cần thêm (tối đa 50):"));
+                if (isNaN(count) || count <= 0 || count > 50) {
+                    alert("Vui lòng nhập một số hợp lệ từ 1 đến 50.");
+                    return;
+                }
+
+                for (let i = 0; i < count; i++) {
+                    const num = parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`));
+                    if (!isNaN(num)) {
+                        numbers.push(num);
+                    } else {
+                        alert("Vui lòng nhập một số hợp lệ.");
+                        i--; 
+                    }
+                }
+                alert(`Mảng hiện tại: [${numbers.join(", ")}]`);
+            }
+
+            function countPairs(k) {
+                let count = 0;
+                let pairs = []; 
+                for (let i = 0; i < numbers.length; i++) {
+                    for (let j = i + 1; j < numbers.length; j++) {
+                        if ((numbers[i] + numbers[j]) % k === 0) {
+                            count++;
+                            pairs.push(`(${numbers[i]}, ${numbers[j]})`); 
+                        }
+                    }
+                }
+                return {count, pairs}; 
+            }
+
+            function processInput() {
+                addNumbers(); 
+
+                const k = parseInt(prompt("Nhập số nguyên dương k:"));
+                if (isNaN(k) || k <= 0) {
+                    alert("Vui lòng nhập một số nguyên dương hợp lệ cho k.");
+                    return;
+                }
+
+                const { count, pairs } = countPairs(k);
+                alert(`Số cặp có tổng chia hết cho ${k} là: ${count}\nCác cặp là: ${pairs.join(", ")}`);
+            }
+
+            processInput(); 
+        </script>
+    </div>
+</body>
+</html>

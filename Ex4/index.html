@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Khách hàng</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="header">
+        <div class="heading01">
+            <div class="địnhhình">
+                <div class="head01">
+                    <a href="">Thông tin</a>
+                    <a href="">Thanh toán</a>
+                    <a href="">Liên hệ</a>
+                    <a href="">Hỗ trợ</a>
+                </div>
+                <div class="head02">
+                    <a href=""><img src="/icon/facebook.png" alt=""></a>
+                    <a href=""><img src="/icon/insa.png" alt=""></a>
+                    <a href=""><img src="/icon/telegram.png" alt=""></a>
+                    <a href=""><img src="/icon/điện thoại.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="logo">
+            <img src="icon/logo Supermarket.png" alt="">
+        </div>
+    </div>
+    <div class="body">
+        <h1>Quản lý Khách hàng</h1>
+        <form id="customerForm">
+            <div>
+                <label for="customerId">Mã khách hàng:</label><br>
+                <input style="width: 30%;" type="text" id="customerId" required><br><br>
+            </div>
+            
+            <div>
+                <label for="customerName">Tên khách hàng:</label><br>
+                <input style="width: 60%;" type="text" id="customerName" required><br><br>
+            </div>
+            
+            <div>
+                <label for="phone">Số điện thoại:</label><br>
+                <input style="width: 30%;" type="tel" id="phone" required><br><br>
+            </div>
+            
+            <div>
+                <label for="address">Địa chỉ:</label><br>
+                <input style="width: 60%;" type="text" id="address" required><br><br>
+            </div>
+            
+            <div>
+                <label for="email">Email:</label><br>
+                <input style="width: 50%;" type="email" id="email" required><br><br>
+            </div>
+            
+            <button type="submit">Thêm khách hàng</button>
+        </form>
+
+        <h2>Danh sách khách hàng</h2>
+        <table id="customerTable">
+            <thead>
+                <tr>
+                    <th>Mã khách hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js.js"></script>
+</body>
+</html>

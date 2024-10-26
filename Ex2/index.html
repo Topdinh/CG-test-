@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chấm điểm học sinh</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chấm điểm học sinh</h1>
+    <div id="inputArea">
+        <script>
+            function roundGrade(grade) {
+                if (grade < 50) return grade; 
+                if (grade < 48) return grade; 
+
+                const nextMultipleOfFive = Math.ceil(grade / 5) * 5;
+                if (nextMultipleOfFive - grade < 3) {
+                    return nextMultipleOfFive; 
+                }
+                return grade; 
+            }
+
+            function enterGrades() {
+                const numberOfStudents = parseInt(prompt("Nhập số học sinh:"));
+                if (isNaN(numberOfStudents) || numberOfStudents <= 0) {
+                    alert("Vui lòng nhập một số hợp lệ.");
+                    return;
+                }
+
+                const students = [];
+
+                for (let i = 0; i < numberOfStudents; i++) {
+                    const name = prompt(`Nhập tên học sinh thứ ${i + 1}:`);
+                    const grade = parseFloat(prompt(`Nhập điểm số của ${name}:`));
+                    if (isNaN(grade) || grade < 0 || grade > 100) {
+                        alert("Điểm không hợp lệ. Vui lòng nhập điểm từ 0 đến 100.");
+                        i--; 
+                    } else {
+                        const roundedGrade = roundGrade(grade);
+                        const status = roundedGrade < 50 ? "Trượt" : "Đỗ"; 
+                        students.push({name, grade, roundedGrade, status});
+                    }
+                }
+                displayResults(students);
+            }
+
+            function displayResults(students) {
+                let tableHTML = "<table><tr><th>Tên</th><th>Điểm</th><th>Điểm đã làm tròn</th><th>Đánh giá</th></tr>";
+                for (const student of students) {
+                    tableHTML += `<tr><td>${student.name}</td><td>${student.grade}</td><td>${student.roundedGrade}</td><td>${student.status}</td></tr>`;
+                }
+                tableHTML += "</table>";
+                document.getElementById("inputArea").innerHTML += tableHTML; 
+            }
+
+            enterGrades(); 
+        </script>
+    </div>
+</body>
+</html>

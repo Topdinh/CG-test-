@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập độ dài mảng</title>
+</head>
+<body>
+    <div id="arrayDisplay"></div> 
+    <div id="multiplesDisplay"></div>
+    <script>
+        function createArray() {
+            const length = parseInt(prompt("Nhập độ dài của mảng số nguyên (tối đa 20):"));
+
+            if (isNaN(length) || length <= 0 || length > 20) {
+                alert("Độ dài không hợp lệ. Vui lòng nhập số từ 1 đến 20.");
+                return;
+            }
+
+            const numbers = [];
+
+
+            for (let i = 0; i < length; i++) {
+                const num = parseInt(prompt(`Nhập số nguyên thứ ${i + 1}:`));
+                
+                if (isNaN(num)) {
+                    alert("Giá trị không hợp lệ. Vui lòng nhập một số nguyên.");
+                    i--; 
+                } else {
+                    numbers.push(num); 
+                }
+            }
+
+            displayArray(numbers);
+
+            findMultiples(numbers);
+        }
+
+        function displayArray(arr) {
+            const arrayDisplayElement = document.getElementById("arrayDisplay");
+            arrayDisplayElement.innerHTML = "Mảng số nguyên bạn đã nhập: " + arr.join(", ");
+        }
+
+        function findMultiples(arr) {
+            let sum = 0;
+            const multiples = [];
+
+            for (let i = 0; i < arr.length; i++) {
+                const num = arr[i];
+
+                if (num % 3 === 0 && num % 5 === 0) {
+                    multiples.push(num);
+                    sum += num;
+                }
+            }
+
+            const resultMessage = 
+                "Các số trong dãy có thể chia hết cho 3 và 5: " + multiples.join(", ") + 
+                "\nTổng của các số bội chung là: " + sum;
+
+            alert(resultMessage);
+            console.log("Các số bội chung của 3 và 5:", multiples);
+            console.log("Tổng của các số bội chung là:", sum);
+
+            displayMultiples(multiples);
+        }
+
+        function displayMultiples(multiples) {
+            const multiplesDisplayElement = document.getElementById("multiplesDisplay");
+            if (multiples.length > 0) {
+                multiplesDisplayElement.innerHTML = "Các số chia hết cho 3 và 5 là: " + multiples.join(", ");
+            } else {
+                multiplesDisplayElement.innerHTML = "Không có số nào chia hết cho 3 và 5.";
+            }
+        }
+
+        createArray();
+    </script>
+</body>
+</html>
